@@ -1,0 +1,67 @@
+using System;
+
+namespace Bears
+{
+    class Program
+    {
+        private static string[,] _stringsTree = {
+            {"-*-------"},
+            {"*---*-*--"},
+            {"-*--***-*"},
+            {"**-****-*"}
+        };
+
+        static void Main()
+        {
+            Task(_stringsTree);
+        }
+
+
+        private static void Task(string[,] strings)
+        {
+            int rank = strings.Rank;
+            if (rank != 2)
+            {
+                Console.WriteLine("указанный массив не двумерен");
+                return;
+            }
+
+            int rows = strings.GetUpperBound(0) + 1;//кол-во строк
+            int colums = strings[0, 0].Length; //кол-во символов в строке
+
+
+            for (int i = 0; i < rows; i++)
+            {
+
+                char[] chars = strings[i, 0].ToCharArray();
+                char[] charsInsert = new char[colums];
+
+                int starsCount = 0; //кол-во звездочек в строке
+
+                foreach (var ch in chars) //узнаем кол-во звездочек в строке
+                {
+                    if (ch.Equals('*')) starsCount++;
+                }
+
+                int intStartInsert = (colums - starsCount) / 2; // начальная позиция звездочек
+
+                for (int k = 0; k < starsCount; k++)
+                {
+                    charsInsert[intStartInsert] = '*';
+                    intStartInsert++;
+                }
+
+                for (int k = 0; k < charsInsert.Length; k++)
+                {
+                    if (!charsInsert[k].Equals('*')) charsInsert[k] = '-';
+                }
+
+                string line = new string(charsInsert);
+                Console.WriteLine(line);
+
+                
+            }
+        }
+
+    }
+}
