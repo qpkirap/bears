@@ -19,13 +19,7 @@ namespace Bears
 
         private static void Task(string[,] strings)
         {
-            int rank = strings.Rank;
-            if (rank != 2)
-            {
-                Console.WriteLine("указанный массив не двумерен");
-                return;
-            }
-
+            
             int rows = strings.GetUpperBound(0) + 1;//кол-во строк
             int colums = strings[0, 0].Length; //кол-во символов в строке
 
